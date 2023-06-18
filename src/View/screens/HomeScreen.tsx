@@ -1,7 +1,7 @@
 import React from 'react';
-import Colors from '../../consts/colors';
-import Sabor from '../../components/sabores';
-import Produto from '../../components/produto';
+import Colors from './../../theme/colors';
+import Flavor from '../../components/flavor';
+import Product from '../../components/product';
 import { View, SafeAreaView, StyleSheet, Text} from 'react-native'; 
 import { TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -26,12 +26,12 @@ export const HomeScreen = () => {
         </View>
       </View>
 
-     <Sabor/> 
+     <Flavor/> 
 
 
      <View style={{ backgroundColor: Colors.white}}>
 
-      <Produto/>
+      <Product/>
      
      </View>
 
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: Colors.dark,
     borderRadius: 10,
-    flexdirection: 'row', 
+    flexDirection: 'row', 
   },
   
   input: {
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     height: 50,
     width: 50,
-    backgroundColor: Colors.pinklight,
+    backgroundColor: Colors.pinkLight,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
