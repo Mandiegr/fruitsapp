@@ -1,10 +1,11 @@
 import React from 'react';
 import Colors from './../../theme/colors';
-import Flavor from '../../components/flavor';
-import Product from '../../components/product';
-import { View, SafeAreaView, StyleSheet, Text} from 'react-native'; 
+import {Flavor} from '../../components/flavor';
+import ProductList from '../../components/product';
+import { View, SafeAreaView, StyleSheet} from 'react-native'; 
 import { TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+
 
 
 
@@ -14,10 +15,10 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 export const HomeScreen = () => {
   return (
     
-   <SafeAreaView style={{ flex: 1, paddingHorizontal: 20, backgroundColor: Colors.pink}}>
-
-      <View style={{marginTop: 30, flexDirection: 'row'}}>
-        <View style={styles.searchContainer}>
+    <View style={{backgroundColor:Colors.yellowLight}}>
+   <SafeAreaView style={{ backgroundColor: Colors.green}}>
+      <View style={{marginTop: 30, flexDirection: 'row', marginHorizontal: 20,}}>
+        <View style={styles.searchContainer }>
           <Icon name="search" size={23} style={{marginLeft: 20, marginTop: 15, color: Colors.pink}} />
           <TextInput  placeholder="Search" style={styles.input} />
         </View>
@@ -26,19 +27,16 @@ export const HomeScreen = () => {
         </View>
       </View>
 
-     <Flavor/> 
-
+      <Flavor/> 
 
      <View style={{ backgroundColor: Colors.white}}>
-
-      <Product/>
+      <ProductList/>
+      <ProductList/>
      
      </View>
 
     </SafeAreaView>
-
-    
-
+    </View>
 
 
   );
@@ -49,9 +47,10 @@ const styles = StyleSheet.create({
   searchContainer: {
     width: '80%',
     height: 50,
-    backgroundColor: Colors.dark,
+    backgroundColor: Colors.white,
     borderRadius: 10,
     flexDirection: 'row', 
+    marginTop: 30,
   },
   
   input: {
@@ -64,13 +63,14 @@ const styles = StyleSheet.create({
   },
 
   sortBtn: {
-    marginLeft: 10,
+    marginLeft: 20,
     height: 50,
     width: 50,
     backgroundColor: Colors.pinkLight,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+    marginTop: 30,
   },
   
 });

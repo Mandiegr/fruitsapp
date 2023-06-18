@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native'; 
-import Produto from './../../components/produto';
-import Colors from '../../consts/colors';
+import Product from './../../components/product';
+import Colors from '../../theme/colors';
 
 
 
