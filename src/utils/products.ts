@@ -4,7 +4,7 @@ export const productListItems = [
   
   
 { image: require("../assets/images/rose.png"),
-  productName: "pink fruits",
+  productName: "Apple Juice",
   value: "R$ 12,00",
   description: "is simply dummy text of the printing",
   buttonLabel: "- 1 + ",
@@ -15,7 +15,7 @@ export const productListItems = [
 
 {  
 image: require("../assets/images/amarelo.png"),
-productName: "yellow fruits",
+productName: "Pineopple Juice",
 value: "R$ 12,00",
 description: "is simply dummy text of the printing",
 buttonLabel: "- 1 + ",
@@ -23,17 +23,17 @@ bgColorImage: 'pinkLight',
 },
 {  
 image: require("../assets/images/lilas.png"),
-productName: " purple fruits",
+productName: " Graps Juice",
 value: "R$ 12,00",
 description: "is simply dummy text of the printing",
-buttonLabel: "- 1 + ",
+buttonLabel: " -  1  + ",
 bgColorImage: 'pinkLight',
 
 },
 
 {  
   image: require("../assets/images/red.png"),
-  productName: "red fruits",
+  productName: "Amora Juice  ",
   value: "R$ 12,00",
   description: "is simply dummy text of the printing",
   buttonLabel: "- 1 + ",

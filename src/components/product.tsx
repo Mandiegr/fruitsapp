@@ -4,7 +4,7 @@ import Color from '../utils/color';
 import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, ImageSourcePropType } from 'react-native';
 import { productListItems } from '../utils/products';
 import { useNavigation } from '@react-navigation/native';
-import { colors } from 'react-native-elements';
+
 
 export const Product = () => {
   type PropsItem = {
@@ -17,11 +17,15 @@ export const Product = () => {
   };
 
   const ProductItem = ({ productName, image, value, description, bgColorImage = 'pinkLight', buttonLabel }: PropsItem) => {
+    
     const navigation = useNavigation();
 
     const handleButtonPress = () => {
-      navigation.navigate('DetailsScreen'); 
+      navigation.navigate('DetailsScreen',{ productName, image, value, description, buttonLabel }); 
     };
+
+  
+    
 
     return (
       <View style={styles.item}>
@@ -116,8 +120,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
 
-  buttonLabel: {},
-
   button: {
     width: 70,
     height: 35,
@@ -126,6 +128,13 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.pink,
     borderRadius: 10,
   },
+
+  buttonLabel: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    color: Colors.white,
+  
+   },
 
   productInfo: {
     flex: 1,
