@@ -5,8 +5,10 @@ const Colors = {
   pinkLight: '#ffe5ec',
   yellowLight: '#ffca3a',
   purple: '#be95c4',
+  purpleLight: '#fadbff', 
   red: 'red',
-  green: 'green'
+  green: 'green',
+  orange: 'orange',
 };
 
 export default Colors;

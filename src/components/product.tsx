@@ -1,190 +1,139 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Colors from './../theme/colors';
-import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Color from '../utils/color';
+import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, ImageSourcePropType } from 'react-native';
+import { productListItems } from '../utils/products';
 import { useNavigation } from '@react-navigation/native';
+import { colors } from 'react-native-elements';
 
-
-interface ProductComponentProps {
-  imageSource: any;
-  value: string;
-  description: string;
-  name: string;
-  bgColorImage: string;
-  
-}
-
-const ProductList = () => {
-  return (
-    <View style={styles.container}>
-      <ProductComponent
-        imageSource={require("../assets/images/rose.png")}
-        value="R$ 12,00"
-        description="is simply dummy text of the printing "
-        name="Apple Juice"
-        bgColorImage={Colors.purple}
-      />
-
-      <ProductComponent
-        imageSource={require("../assets/images/rose.png")}
-        value="R$ 12,00"
-        description="is simply dummy text of the printing "
-        name="Pineapple Juice"
-        bgColorImage={Colors.pinkLight}
-      />
-
-      <ProductComponent
-        name="Grape Juice"
-        imageSource={require("../assets/images/rose.png")}
-        value="R$ 12,00"
-        description="is simply dummy text of the printing "
-        bgColorImage={Colors.purple}
-      />
-    </View>
-  );
-};
-
-const ProductComponent: React.FC<ProductComponentProps> = ({
-  imageSource,
-  value,
-  description,
-  name,
-  bgColorImage = Colors.pink,
-}) => {
-  const [quantity, setQuantity] = useState(1);
-  const { navigate } = useNavigation();
-
-  const decreaseQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
+export const Product = () => {
+  type PropsItem = {
+    productName: string;
+    image: ImageSourcePropType;
+    value: string;
+    description: string;
+    bgColorImage:  keyof typeof Color;
+    buttonLabel: string;
   };
 
-  const increaseQuantity = () => {
-    setQuantity(quantity + 1);
-  };
+  const ProductItem = ({ productName, image, value, description, bgColorImage = 'pinkLight', buttonLabel }: PropsItem) => {
+    const navigation = useNavigation();
 
-  const goToDetailsScreen = () => {
-    navigate("DetailsScreen"); // Navegar para a página DetailsScreen
-  };
+    const handleButtonPress = () => {
+      navigation.navigate('DetailsScreen'); 
+    };
 
-  return (
-    <View style={styles.productContainer}>
-      <View style={{ ...styles.infoContainer, flex: 1 }}>
-        <View style={{ paddingRight: 20 }}>
-          <Text style={styles.name}>{name}</Text>
+    return (
+      <View style={styles.item}>
+        <View style={styles.productInfo}>
+          <Text style={styles.name}>{productName}</Text>
           <Text style={styles.description}>{description}</Text>
-
-          <View style={styles.valueContainer}>
+          <View style={styles.valueButtonContainer}>
             <Text style={styles.value}>{value}</Text>
-
-            <TouchableOpacity
-              onPress={goToDetailsScreen}
-              style={[
-                styles.quantityContainer,
-                styles.borderBtn,
-                { borderRadius: 10 },
-              ]}
-            >
-              <Text style={{ ...styles.borderBtnText, fontSize: 15 }}>Go</Text>
+            <TouchableOpacity style={styles.button} onPress={handleButtonPress}>
+              <Text style={styles.buttonLabel}>{buttonLabel}</Text>
             </TouchableOpacity>
-            {/* <View style={styles.quantityContainer}>
-            <TouchableOpacity
-              style={styles.borderBtn}
-              onPress={decreaseQuantity}
-            >
-              <Text style={styles.borderBtnText}>-</Text>
-            </TouchableOpacity>
-            <View style={styles.borderBtn}>
-              <Text style={styles.quantity}>{quantity}</Text>
-            </View>
-
-            <TouchableOpacity
-              style={styles.borderBtn}
-              onPress={increaseQuantity}
-            >
-              <Text style={styles.borderBtnText}>+</Text>
-            </TouchableOpacity>
-          </View> */}
           </View>
         </View>
+        <View
+          style={{
+            backgroundColor: Color[bgColorImage],
+            flex: 1,
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: 200,
+            maxWidth: 160,
+            marginBottom: 20,
+            borderRadius: 25,
+          }}
+        >
+          <Image source={image} style={styles.image} />
+        </View>
       </View>
+    );
+  };
 
-      <View
-        style={{
-          backgroundColor: bgColorImage,
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-          height: 200,
-          maxWidth: 160,
-          borderRadius: 25,
-        }}
-      >
-        <Image source={imageSource} style={styles.image} />
-      </View>
+  return (
+    <View style={{ width: '100%', marginTop: 30, paddingBottom: 30 }}>
+      <ScrollView vertical showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
+          <View>
+            {productListItems.map((productItem: PropsItem) => (
+              <ProductItem
+                key={productItem.productName}
+                productName={productItem.productName}
+                image={productItem.image}
+                value={productItem.value}
+                description={productItem.description}
+                buttonLabel={productItem.buttonLabel}
+                bgColorImage={productItem.bgColorImage}
+              />
+            ))}
+          </View>
+        </View>
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {},
+
   productContainer: {
-    flexDirection: "row",
-    marginVertical: 20,
-    marginHorizontal: 20,
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    backgroundColor: Colors.orange,
   },
-  infoContainer: {},
-  image: {
-    width: "80%",
-    maxWidth: 80,
-    height: "90%",
-    borderRadius: 20,
-  },
-  valueContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  value: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginRight: 10,
-  },
-  name: {
-    color: Colors.dark,
-    fontWeight: "bold",
-    fontSize: 25,
-    marginBottom: 10,
-  },
+
   description: {
     fontSize: 10,
     marginBottom: 15,
   },
-  borderBtn: {
-    width: 40,
-    height: 35,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: Colors.pink,
-  },
-  borderBtnText: {
-    fontWeight: "bold",
-    fontSize: 19,
-    color: Colors.white,
-  },
-  quantityContainer: {
-    justifyContent: "center",
-    alignItems: "center",
-    flexDirection: "row",
-  },
-  quantity: {
+  value: {
     fontSize: 18,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     marginRight: 10,
-    color: Colors.white,
+  },
+
+  item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginHorizontal: 50,
+  },
+
+  image: {
+    width: '80%',
+    maxWidth: 80,
+    borderRadius: 25 ,
+    height: '90%',
+  },
+  name: {
+    color: Colors.dark,
+    fontWeight: 'bold',
+    fontSize: 25,
+    marginBottom: 10,
+  },
+
+  buttonLabel: {},
+
+  button: {
+    width: 70,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.pink,
+    borderRadius: 10,
+  },
+
+  productInfo: {
+    flex: 1,
+    marginRight: 10,
+  },
+
+  valueButtonContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
-
-export default ProductList;

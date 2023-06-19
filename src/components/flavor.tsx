@@ -16,18 +16,12 @@ import { flavorListItems } from "../utils/flavors";
       );
     
       return (
-        <View
-          style={{
-            width: "100%",
-            marginTop: 30,
-            paddingBottom: 30,
-          }}
-        >
+        <View style={{ width: "100%", marginTop: 30,paddingBottom: 30, }}>
 
-          
+
           <ScrollView horizontal showsHorizontalScrollIndicator={false} style={{marginHorizontal: 20,}}>
             <View style={styles.container}>
-              <View style={styles.row}>
+              <View style={styles.row}>                                                                                                                              
                 {flavorListItems.map((flavorItem: PropsItem) => (
                   <FlavorItem
                     key={flavorItem.flavorName}
@@ -45,7 +39,7 @@ import { flavorListItems } from "../utils/flavors";
     const styles = StyleSheet.create({
       container: {
         alignItems: "center",
-        backgroundColor: Colors.pinkLight,
+        backgroundColor: Colors.pink,
         alignContent: 'center',
         justifyContent: 'center'
       },
