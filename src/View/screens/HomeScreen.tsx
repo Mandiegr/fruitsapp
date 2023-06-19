@@ -2,13 +2,10 @@ import React from 'react';
 import Colors from './../../theme/colors';
 import {Flavor} from '../../components/flavor';
 import {Product} from '../../components/product';
-import { View, SafeAreaView, StyleSheet, ViewBase, ScrollView} from 'react-native'; 
+import {ProductProvider} from '../../context/ProductContext';
+import { View, SafeAreaView, StyleSheet, ScrollView} from 'react-native'; 
 import { TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
-
-
-
 
 
 
@@ -33,10 +30,11 @@ export const HomeScreen = () => {
       
 
      <View >
-     <ScrollView>
+      <ProductProvider> 
+     <ScrollView showsVerticalScrollIndicator={false}>
      <Product/>
-    
      </ScrollView>
+     </ProductProvider>
      </View>
 
     </SafeAreaView>

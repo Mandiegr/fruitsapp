@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Colors from './../theme/colors';
 import Color from '../utils/color';
 import { View, Image, Text, TouchableOpacity, StyleSheet, ScrollView, ImageSourcePropType } from 'react-native';
 import { productListItems } from '../utils/products';
+import { ProductContext } from '../context/ProductContext';
 import { useNavigation } from '@react-navigation/native';
 
 
@@ -19,6 +20,8 @@ export const Product = () => {
   const ProductItem = ({ productName, image, value, description, bgColorImage = 'pinkLight', buttonLabel }: PropsItem) => {
     
     const navigation = useNavigation();
+
+    const { setSelectedProduct } = useContext(ProductContext);
 
     const handleButtonPress = () => {
       navigation.navigate('DetailsScreen',{ productName, image, value, description, buttonLabel }); 
@@ -59,7 +62,6 @@ export const Product = () => {
 
   return (
     <View style={{ width: '100%', marginTop: 30, paddingBottom: 30 }}>
-      <ScrollView vertical showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View>
             {productListItems.map((productItem: PropsItem) => (
@@ -75,7 +77,7 @@ export const Product = () => {
             ))}
           </View>
         </View>
-      </ScrollView>
+      
     </View>
   );
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Image,  TouchableOpacity } from 'react-native';
 import Colors from '../../theme/colors';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-//mport { useRoute } from '@react-navigation/native';
+
 
 
 
