@@ -5,15 +5,15 @@ export const flavorListItems = [
   },
   {
     image: require("../assets/images/abacate.png"),
-    flavorName: "abacate",
+    flavorName: "avocado",
   },
   {
     image: require("../assets/images/maca.png"),
-    flavorName: "maçã",
+    flavorName: "apple",
   },
   {
     image: require("../assets/images/uva.png"),
-    flavorName: "uva",
+    flavorName: "grape",
   },
   {
     image: require("../assets/images/banana.png"),
